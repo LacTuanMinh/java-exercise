@@ -23,4 +23,8 @@ public class ArrayPreviousLess {
         //TODO: implement this method
         throw new UnsupportedOperationException("This method is not implemented yet");
     }
+
+    public static void main(String[] args) {
+
+    }
 }
