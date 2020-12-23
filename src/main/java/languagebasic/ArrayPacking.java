@@ -74,7 +74,7 @@ public class ArrayPacking {
     }
 
     public static int binaryStringToDecimal(String binaryString) {
-        String binaryStringCopy = binaryString.replaceAll(" ", "");
+        String binaryStringCopy = binaryString.replaceAll(" ","");
         final int length = binaryStringCopy.length();
         int sum = 0;
         char bit;
