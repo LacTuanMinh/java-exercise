@@ -1,16 +1,27 @@
 1. Find errors and fix them
+==> cannot use keyword boolean for var name.
+    assign int value to boolean variable => change 1 to true or false
+    c hasn't been assigned value => assign true or false to it.
 public static void main(String args[]) {
-    boolean boolean = false;
-    System.out.println(boolean);
+    boolean fixedVariable = false;
+    System.out.println(fixedVariable);
     boolean a = true;
     System.out.println(a);
-    boolean b = 1;
+    boolean b = true;
     System.out.println(b);
-    boolean c;
+    boolean c = true;
     System.out.println(c);
 }
 
 2. What is the output?
+
+=> answer : {
+126
+127
+-128
+-127
+}
+
 public static void main(String args[]) {
     byte a = 126;
     System.out.println(a);
@@ -29,34 +40,53 @@ public static void main(String args[]) {
     char c = 42;
     char c1 = 052;
     char c2 = 0x2a;
-    char c3 = '\u002a'
+    char c3 = '\u002a';
     byte b = 100;
     short s = 10000;
-    int i = 9876543210;
+    int i = 9876543210;   ==> invalid: too large
     int decVal = 26;
     int hexVal = 0x1a;
     int binVal = 0b11010;
     float f1  = 123.4f;
-    float f2  = 1.234e2;
+    float f2  = 1.234e2;  ==> invalid: assign double value to float variable (loss data)
     double d1 = 123.4;
     double d2 = 1.234e2;
-    long creditCardNumber = 1234_5678_9012_3456;
+    long creditCardNumber = 1234_5678_9012_3456;  ==> invalid: too large
     long socialSecurityNumber = 999_99_9999L;
     float pi =  3.14_15F;
     float pi1 = 3_.1415F;
     float pi2 = 3._1415F;
-    long socialSecurityNumber1 = 999_99_9999_L;
-    int i = 1234567890;
+    long socialSecurityNumber1 = 999_99_9999_L;    => L can not stand alone
+    int i = 1234567890;      ==> i has been used above
     int x1 = 5_2;
-    int x2 = 52_;
+    int x2 = 52_;           => invalid : underscore must be between 2 digits
     int x3 = 5_______2;
-    int x4 = 0_x52;
-    int x5 = 0x_52;
+    int x4 = 0_x52;  ==> invalid: 0x must stand together
+    int x5 = 0x_52;   ==> _ must be between 2 digits, but 0x is not digit
     int x6 = 0x5_2;
-    int x7 = 0x52_;
+    int x7 = 0x52_;  ==> invalid : underscore must be between 2 digits
 }
 
 4. What is the output?
+
+==> answer : {
+47
+**********
+9
+9
+9.0
+**********
+9.78
+9
+**********
+9876543210
+1286608618
+**********
+9.78
+9.77999
+}
+
+
 public static void main(String args[]) {
     char c1 = 42;
     char c2 = '\u0005';
