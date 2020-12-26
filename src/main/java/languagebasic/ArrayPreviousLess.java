@@ -10,41 +10,51 @@ package languagebasic;
  */
 public class ArrayPreviousLess {
 
-    /**
-     * @param items Non-empty array of positive integers
-     * @return Array containing answer values computed
-     * @throws CustomException if the input violates rules
-     *                         3 ≤ items.length ≤ 15
-     *                         1 ≤ items[i] ≤ 200
-     */
-    public int[] arrayPreviousLess(int[] items) throws CustomException {
+  /**
+   * @param items Non-empty array of positive integers
+   * @return Array containing answer values computed
+   * @throws CustomException if the input violates rules
+   *                         3 <= items.length <= 15
+   *                         1 <= items[i] <= 200
+   */
+  public static int[] arrayPreviousLess(int[] items) throws CustomException {
 
-        final int length = items.length;
-        if (length < 3 || length > 15) {
-            throw new CustomException("Items' length out of rangr 3 - 15");
-        }
+    final int length = items.length;
+    if (length < 3 || length > 15) {
+      throw new CustomException("Items' length out of range 3 - 15");
+    }
+    int[] itemsCopy = new int[length];
 
-        for (int i = 1; i < length; i++) {
-
-            if(items[i] < 0 || items[i] > 200) {
-                throw new CustomException("Item's value out of range");
-            }
-
-            for (int j = i - 1; j >= 0; j--) {
-
-                if (items[j] < items[i]) {
-                    items[i] = items[j];
-                    items[j] = -1;
-                    break;
-                }
-            }
-
-        }
-
-        return new int[] { };
+    for (int i = 0; i < length; i++) {
+      itemsCopy[i] = items[i];
     }
 
-    public static void main(String[] args) {
+    for (int i = 1; i < length; i++) {
 
+      if (itemsCopy[i] < 0 || itemsCopy[i] > 200) {
+        throw new CustomException("Item's value out of range");
+      }
+
+      for (int j = i - 1; j >= 0; j--) {
+
+        if ((itemsCopy[j] < itemsCopy[i]) && (itemsCopy[j] != -1)) {
+          itemsCopy[i] = items[j];
+          itemsCopy[j] = -1;
+          break;
+        }
+      }
     }
+    return itemsCopy;
+  }
+
+  public static void main(String[] args) throws CustomException {
+
+    int[] a = new int[]{3, 5, 2, 4, 5};
+    int[] b = arrayPreviousLess(a);
+
+    for (int i = 0; i < b.length; i++) {
+      System.out.print(b[i] + "  ");
+    }
+
+  }
 }

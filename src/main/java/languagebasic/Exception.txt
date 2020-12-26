@@ -1,24 +1,36 @@
 1. Does this compile? If yes, what is the output? If no, fixed it
+==> no. Need to add a catch block
 public static void main(String args[]) {
     try {
         int a = 30;
         int b = 0;
         int c = a / b;
         System.out.println ("Result = " + c);
+    } catch (ArithmeticException e) {
+        System.out.println ("Divide by zero");
     }
 }
 
 2. Does this compile? If yes, what is the output? If no, fixed it
+
+==> no. change exception to FileNotFoundException
+
 public static void main(String args[]) {
     try {
         File file = new File("E://file.txt");
         FileReader fr = new FileReader(file);
-    } catch (RuntimeException e) {
+    } catch (FileNotFoundException e) {
        System.out.println("File does not exist");
     }
 }
 
 3. What is the output?
+
+==> answer : {
+try block
+catch IOException
+finally block
+}
 public static void main(String args[]) {
     try {
         System.out.println("try block");
@@ -35,8 +47,23 @@ public static void main(String args[]) {
 }
 
 4. If remove catch (IOException e) block from exercise 3, is there an error? If not, what is the output?
+==> NO , if there were no "catch (IOException e)", the program will catch the supper class of IOExeption,
+that is "Exception"
+==> output: {
+try block
+catch Exception
+finally block
+}
 
 5. What is the output?
+
+=> answer : {
+try block
+resource has been closed
+catch Exception
+finally block
+}
+
 public static void main(String[] args) {
     try (CustomResource resource = new CustomResource()) {
         System.out.println("try block");

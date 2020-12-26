@@ -1,4 +1,13 @@
 1. What is the output?
+
+==> answer:{
+Parent(25) constructor
+Parent() constructor
+Child() constructor
+**********
+Parent(50) constructor
+}
+
 public class LanguageBasic {
     public static void main(String args[]) {
         Child c1 = new Child();
@@ -29,6 +38,10 @@ class Parent extends Grandparent {
 }
 
 2. What is the output?
+
+=> answer : {
+20 40
+}
 public static void main(String args[]) {
     Rectangle rectangle = new Rectangle(20, 10);
     enlarge(rectangle, 2);
@@ -42,6 +55,18 @@ private static void enlarge(Rectangle rectangle, int multiplier) {
 }
 
 3. Find errors and fix if any
+
+answer: private modifier can not be applied to top level class,
+        at least one public class
+
+==> fix:
+public class A {
+    private class B {
+        private class C {}
+    }
+}
+
+====
 private class A {
     private class B {
         private class C {}
@@ -76,6 +101,8 @@ public class MainClass {
 }
 
 6. Find errors and fix if any
+
+=> answer: no error
 package pack1;
 class A {
     public A(){}
@@ -88,6 +115,9 @@ class B {
 }
 
 7. Find errors and fix if any
+
+==> answer: no errors
+
 package pack1;
 public class A {
    protected A(int i) {}
@@ -103,6 +133,23 @@ class B extends A {
 }
 
 8. Is there any errors? If not, what is the output?
+==> no error
+==> output : {
+Hello World!
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+10
+}
+
 private static int count = 0;
 private String s = "Hello World!";
 
