@@ -25,6 +25,8 @@ public class ArrayPreviousLess {
     }
     int[] itemsCopy = new int[length];
 
+    // TODO: install SonarLint plugin and check it suggestions
+    // TODO: use a consistent spacing (2 or 4 choose one)
     for (int i = 0; i < length; i++) {
       itemsCopy[i] = items[i];
     }
@@ -48,7 +50,14 @@ public class ArrayPreviousLess {
   }
 
   public static void main(String[] args) throws CustomException {
-
+    // TODO: write tests in a separated file
+    // TODO: this output not correct
+    // should be -1, 3, -1, 2, 4
+    // 3 has no smaller value in the left -> -1
+    // 5 has only one smaller value in the left -> 3
+    // 2 has no smaller value in the left -> -1
+    // 4 has two smaller values in the left, select the last one -> 2
+    // 5 has three smaller values in the left, select the last one -> 4
     int[] a = new int[]{3, 5, 2, 4, 5};
     int[] b = arrayPreviousLess(a);
 
