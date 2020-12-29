@@ -14,77 +14,77 @@ public class OverlappingIntervalPairs {
      */
 
 
-    public static void main(String[] args) {
-        List<int[]> intervals = new ArrayList<>();
-        intervals.add(new int[]{1, 5});
-        intervals.add(new int[]{6, 8});
-        intervals.add(new int[]{5, 12});
-        intervals.add(new int[]{2, 6});
+  public static void main(String[] args) {
+    List<int[]> intervals = new ArrayList<>();
+    intervals.add(new int[]{1, 5});
+    intervals.add(new int[]{6, 8});
+    intervals.add(new int[]{5, 12});
+    intervals.add(new int[]{2, 6});
 
-        //============
+    //============
 
-        int k = 2;
-        int[] seeds = new int[intervals.size()]; // input array
-        Arrays.setAll(seeds, index -> index); // 0,1,2,3,...
-        List<int[]> kCombination = new ArrayList<>();
+    int k = 2;
+    int[] seeds = new int[intervals.size()]; // input array
+    Arrays.setAll(seeds, index -> index); // 0,1,2,3,...
+    List<int[]> kCombination = new ArrayList<>();
 
-        generateKCombination(seeds, kCombination, k);
+    generateKCombination(seeds, kCombination, k);
 
-        Iterator<int[]> iterator = kCombination.iterator();
+    Iterator<int[]> iterator = kCombination.iterator();
 
-        //main bussiness logic
-        while (iterator.hasNext()){
+    //main bussiness logic
+    while (iterator.hasNext()) {
 
-            int[] pair= iterator.next();
-            int[] first = intervals.get(pair[0]);
-            int[] second = intervals.get(pair[1]);
+      int[] pair = iterator.next();
+      int[] first = intervals.get(pair[0]);
+      int[] second = intervals.get(pair[1]);
 
-            if(first[1] >= second[0] && first[0] <= second[1]) {
+      if (first[1] >= second[0] && first[0] <= second[1]) {
 //                System.out.printf("[%d %d] [%d %d]\n", first[0], first[1], second[0], second[1]);
-            }else {
-                iterator.remove();
-            }
-        }
-
-        //print
-        iterator = kCombination.iterator();
-        while(iterator.hasNext()){
-            int[] pair= iterator.next();
-            int[] first = intervals.get(pair[0]);
-            int[] second = intervals.get(pair[1]);
-            System.out.printf("[%d %d] [%d %d]\n", first[0], first[1], second[0], second[1]);
-        }
-
+      } else {
+        iterator.remove();
+      }
     }
 
-    public static void generateKCombination(int[] seeds, List<int[]> kCombination, int k){
-        int[] s = new int[k];
-
-        while (true) {
-            int i;
-
-            for (i = k - 1; i >= 0 && s[i] == (seeds.length - k + i); i--) ; // find position of item that can be incremented
-
-            if (i < 0) {
-                break;
-            }
-            s[i]++;                    // increment this item
-
-            for (++i; i < k; i++) {    // fill up remaining items
-                s[i] = s[i - 1] + 1;
-            }
-
-            kCombination.add(getSubset(seeds, s));
-        }
+    //print
+    iterator = kCombination.iterator();
+    while (iterator.hasNext()) {
+      int[] pair = iterator.next();
+      int[] first = intervals.get(pair[0]);
+      int[] second = intervals.get(pair[1]);
+      System.out.printf("[%d %d] [%d %d]\n", first[0], first[1], second[0], second[1]);
     }
 
-    public static int[] getSubset(int[] input, int[] subset) {
-        int[] result = new int[subset.length];
+  }
 
-        for (int i = 0; i < subset.length; i++) {
-            result[i] = input[subset[i]];
-        }
+  public static void generateKCombination(int[] seeds, List<int[]> kCombination, int k) {
+    int[] s = new int[k];
 
-        return result;
+    while (true) {
+      int i;
+
+      for (i = k - 1; i >= 0 && s[i] == (seeds.length - k + i); i--) ; // find position of item that can be incremented
+
+      if (i < 0) {
+        break;
+      }
+      s[i]++;                    // increment this item
+
+      for (++i; i < k; i++) {    // fill up remaining items
+        s[i] = s[i - 1] + 1;
+      }
+
+      kCombination.add(getSubset(seeds, s));
     }
+  }
+
+  public static int[] getSubset(int[] input, int[] subset) {
+    int[] result = new int[subset.length];
+
+    for (int i = 0; i < subset.length; i++) {
+      result[i] = input[subset[i]];
+    }
+
+    return result;
+  }
 }

@@ -1,6 +1,6 @@
 1. What is the output?
 
-==> answer:{
+==> answer: {
 Parent(25) constructor
 Parent() constructor
 Child() constructor

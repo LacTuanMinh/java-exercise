@@ -1,4 +1,13 @@
 1. Is there an error? If not, what is the output?
+
+==> no error,
+ but should replace "a.hello()" with "A.hello()"
+ output:
+{
+A.hello()
+B.goodbye()
+}
+
 class A {
     public static void hello() {
         System.out.println("A.hello()");
@@ -26,6 +35,8 @@ public class Main {
 }
 
 2. Is there an error? If not, what is the output?
+
+==> yes, we can not use super.super to call the method of higher extended classes from its superclass
 class Grandparent {
     public void Print() {
         System.out.println("Grandparent's Print()");
@@ -53,6 +64,9 @@ public class Main {
 }
 
 3. Is there an error? If not, what is the output?
+
+==> Complex number is (10.0 + 15.0i)
+
 class Complex {
     private final double re;
     private final double im;
@@ -75,6 +89,9 @@ public class Main {
 }
 
 4. Is there an error? If not, what is the output?
+
+==> yes, there is no bark method in Animal class to call in program
+
 class Animal {
     public void run() {
         System.out.println("An animal is running");

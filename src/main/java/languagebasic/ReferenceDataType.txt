@@ -1,4 +1,7 @@
 1. How many String Objects are created?
+
+answer: 4
+
 public static void main(String args[]) {
     String s1 = "Hello ";
     s1 += "World! ";
@@ -10,11 +13,11 @@ public static void main(String args[]) {
 2. Find invalid code
 public static void main(String args[]) {
     Character ch = 'a';
-    String s = 'Hello World!';
+    String s = 'Hello World!';  //  ===> invalid: must be " "
     int sum = sum(7, 8);
-    int intArray[] = new int[]{};
+    int intArray[] = new int[]{};//  ===> useless
     char[] charArray = {'H', 'e', 'l', 'l', 'o'};
-    String[] stringArray = new String[]();
+    String[] stringArray = new String[]();//  ===>  ... new String[]{};
 }
 
 private static Integer sum(Integer a, Integer b) {
@@ -22,6 +25,16 @@ private static Integer sum(Integer a, Integer b) {
 }
 
 3. What is output?
+
+===> answer: {
+4
+<<Address which intArray point to>>
+1
+**********
+3
+<<Address which intArray point to>>
+0
+}
 public static void main(String[] args) {
     int[] intArray = new int[]{1,2,3,4};
     System.out.println(intArray.length);
@@ -36,6 +49,14 @@ public static void main(String[] args) {
 }
 
 4. What is output?
+
+==> answer : {
+2
+1
+**********
+10 40
+}
+
 public static void main(String args[]) {
     Integer count = 1;
     increase(count);

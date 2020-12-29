@@ -1,5 +1,7 @@
 1. Does this compile? If yes, what is the output? If no, fixed it
+
 ==> no. Need to add a catch block
+
 public static void main(String args[]) {
     try {
         int a = 30;
@@ -31,6 +33,7 @@ try block
 catch IOException
 finally block
 }
+
 public static void main(String args[]) {
     try {
         System.out.println("try block");
