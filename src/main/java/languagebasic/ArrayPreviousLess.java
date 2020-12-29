@@ -25,44 +25,41 @@ public class ArrayPreviousLess {
     }
     int[] itemsCopy = new int[length];
 
-    // TODO: install SonarLint plugin and check it suggestions
     // TODO: use a consistent spacing (2 or 4 choose one)
     for (int i = 0; i < length; i++) {
-      itemsCopy[i] = items[i];
-    }
-
-    for (int i = 1; i < length; i++) {
-
-      if (itemsCopy[i] < 0 || itemsCopy[i] > 200) {
+      if (items[i] < 0 || items[i]> 200) {
         throw new CustomException("Item's value out of range");
       }
 
-      for (int j = i - 1; j >= 0; j--) {
+      int indexOf  = -1;
 
-        if ((itemsCopy[j] < itemsCopy[i]) && (itemsCopy[j] != -1)) {
-          itemsCopy[i] = items[j];
-          itemsCopy[j] = -1;
-          break;
+      for (int j = 0; j < i; j++) {
+        if ((items[j] < items[i])) {
+          indexOf = j;
         }
+      }
+
+      if(indexOf != -1){
+        itemsCopy[i] = items[indexOf];
+      }else {
+        itemsCopy[i] = -1;
       }
     }
     return itemsCopy;
   }
 
   public static void main(String[] args) throws CustomException {
+
     // TODO: write tests in a separated file
-    // TODO: this output not correct
-    // should be -1, 3, -1, 2, 4
-    // 3 has no smaller value in the left -> -1
-    // 5 has only one smaller value in the left -> 3
-    // 2 has no smaller value in the left -> -1
-    // 4 has two smaller values in the left, select the last one -> 2
-    // 5 has three smaller values in the left, select the last one -> 4
-    int[] a = new int[]{3, 5, 2, 4, 5};
+    int[] a = new int[] {10,53,6,56,8};//new int[]{3, 5, 2, 4, 5};
     int[] b = arrayPreviousLess(a);
 
     for (int i = 0; i < b.length; i++) {
-      System.out.print(b[i] + "  ");
+      System.out.print(b[i]);
+
+      if(i != b.length-1){
+        System.out.print(", ");
+      }
     }
 
   }

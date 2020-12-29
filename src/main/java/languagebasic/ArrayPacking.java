@@ -20,7 +20,7 @@ public class ArrayPacking {
     public static void main(String[] args) {
         // TODO: for input [254, 255, 255, 255] don't let an exception occur
         // The result could be negative
-        int[] data = new int[]{24, 85, 0};
+        int[] data = new int[]{254,255,255,255};// new int[]{24, 85, 0};
 
         try {
             arrayPacking(data);
