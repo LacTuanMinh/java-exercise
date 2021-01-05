@@ -1,47 +1,41 @@
 package languagebasic;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class OverlappingIntervalPairs {
-    /*
-    Given a collection of intervals (an interval is defined by start and end property), implement a method to return all overlapping interval pairs.
-    Example:
-    Given [11, 15], [3, 9], [1, 4], [15, 18] => return [11, 15] and [15, 18], [3, 9] and [1, 4].
-    Given [1, 5], [6, 8], [5, 12], [2, 6] => return [1, 5] and [5, 12], [1, 5] and [2, 6], [6, 8] and [5, 12], [5, 12] and [2, 6]
-     */
-
-
+  /*
+  Given a collection of intervals (an interval is defined by start and end property), implement a method to return all overlapping interval pairs.
+  Example:
+  Given [11, 15], [3, 9], [1, 4], [15, 18] => return [11, 15] and [15, 18], [3, 9] and [1, 4].
+  Given [1, 5], [6, 8], [5, 12], [2, 6] => return [1, 5] and [5, 12], [1, 5] and [2, 6], [6, 8] and [5, 12], [5, 12] and [2, 6]
+   */
   public static void main(String[] args) {
-    List<int[]> intervals = new ArrayList<>();
-    intervals.add(new int[]{1, 5});
-    intervals.add(new int[]{6, 8});
-//    intervals.add(new int[]{5, 12});
-//    intervals.add(new int[]{2, 6});
-    intervals.add((new int[] {1,5}));
+
+    Set<Interval> intervalsSet = new HashSet<>();
+    intervalsSet.add(new Interval(1, 5));
+    intervalsSet.add(new Interval(6, 8));
+    intervalsSet.add(new Interval(5, 12));
+    intervalsSet.add(new Interval(2, 6));
+    intervalsSet.add(new Interval(1, 5));
+
+
+    List<Interval> intervalsList = new ArrayList<>(intervalsSet);
 
     //============
 
-    int k = 2;
-    int[] seeds = new int[intervals.size()]; // input array
-    Arrays.setAll(seeds, index -> index); // 0,1,2,3,...
     List<int[]> kCombination = new ArrayList<>();
-
-    generateKCombination(seeds, kCombination, k);
-
+    generate2Combination(intervalsList.size(), kCombination);
     Iterator<int[]> iterator = kCombination.iterator();
 
     //main bussiness logic
     while (iterator.hasNext()) {
 
       int[] pair = iterator.next();
-      int[] first = intervals.get(pair[0]);
-      int[] second = intervals.get(pair[1]);
+      Interval interval1 = intervalsList.get(pair[0]);
+      Interval interval2 = intervalsList.get(pair[1]);
 
-      if (first[1] >= second[0] && first[0] <= second[1]) {
-//                System.out.printf("[%d %d] [%d %d]\n", first[0], first[1], second[0], second[1]);
+      if (interval1.getSecond() >= interval2.getFirst() && interval1.getFirst() <= interval2.getSecond()) {
+
       } else {
         iterator.remove();
       }
@@ -51,41 +45,48 @@ public class OverlappingIntervalPairs {
     iterator = kCombination.iterator();
     while (iterator.hasNext()) {
       int[] pair = iterator.next();
-      int[] first = intervals.get(pair[0]);
-      int[] second = intervals.get(pair[1]);
-      System.out.printf("[%d %d] [%d %d]\n", first[0], first[1], second[0], second[1]);
+      Interval interval1 = intervalsList.get(pair[0]);
+      Interval interval2 = intervalsList.get(pair[1]);
+      System.out.printf("[%d %d] [%d %d]\n", interval1.getFirst(), interval1.getSecond(), interval2.getFirst(), interval2.getSecond());
     }
 
   }
 
-  public static void generateKCombination(int[] seeds, List<int[]> kCombination, int k) {
-    int[] s = new int[k];
-
-    while (true) {
-      int i;
-
-      for (i = k - 1; i >= 0 && s[i] == (seeds.length - k + i); i--) ; // find position of item that can be incremented
-
-      if (i < 0) {
-        break;
+  public static void generate2Combination(int n, List<int[]> kCombination) {
+    for (int i = 0; i < n - 1; i++) {
+      for (int j = i + 1; j < n; j++) {
+        kCombination.add(new int[]{i, j});
       }
-      s[i]++;                    // increment this item
-
-      for (++i; i < k; i++) {    // fill up remaining items
-        s[i] = s[i - 1] + 1;
-      }
-
-      kCombination.add(getSubset(seeds, s));
     }
   }
+}
 
-  public static int[] getSubset(int[] input, int[] subset) {
-    int[] result = new int[subset.length];
+class Interval {
+  private int[] value = new int[2];
 
-    for (int i = 0; i < subset.length; i++) {
-      result[i] = input[subset[i]];
-    }
+  public Interval(int start, int end) {
+    this.value[0] = start;
+    this.value[1] = end;
+  }
 
-    return result;
+  public int getFirst() {
+    return value[0];
+  }
+
+  public int getSecond() {
+    return value[1];
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Interval interval = (Interval) o;
+    return this.value[0] == interval.value[0] && this.value[1] == interval.value[1];
+  }
+
+  @Override
+  public int hashCode() {
+    return Arrays.hashCode(value);
   }
 }

@@ -9,7 +9,6 @@ import org.testng.annotations.BeforeMethod;
 import static org.junit.Assert.*;
 
 public class ArrayPreviousLessTest {
-    //TODO: Write tests for your code
 
     @Before
     public void runBeforeTest(){
