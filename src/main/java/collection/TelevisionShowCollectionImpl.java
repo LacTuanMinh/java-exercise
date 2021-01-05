@@ -1,6 +1,7 @@
 package collection;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class TelevisionShowCollectionImpl implements TelevisionShowCollection {
@@ -27,7 +28,7 @@ public class TelevisionShowCollectionImpl implements TelevisionShowCollection {
 
   private class TelevisionShowIteratorImpl implements TelevisionShowIterator {
 
-    private int currentIndex = 0;
+    private int position = 0;
     private Channel channel;
 
     TelevisionShowIteratorImpl() {
@@ -43,10 +44,10 @@ public class TelevisionShowCollectionImpl implements TelevisionShowCollection {
 
       // TODO
       if (this.channel == Channel.ALL) {
-        return currentIndex < list.size();
+        return position < list.size();
       } else {
 
-        int i = currentIndex;
+        int i = position;
         while (i < list.size()) {
 
           if (list.get(i).getChannel() == this.channel) {
@@ -64,14 +65,14 @@ public class TelevisionShowCollectionImpl implements TelevisionShowCollection {
       // TODO
 
       if (channel == Channel.ALL) {
-        return currentIndex < list.size() ? list.get(currentIndex++) : null;
+        return position < list.size() ? list.get(position++) : null;
       } else {
 
-        int i = currentIndex;
+        int i = position;
         while (i < list.size()) {
           TelevisionShow tvShow = list.get(i);
           if (tvShow.getChannel() == this.channel) {
-            currentIndex = ++i;
+            position = ++i;
             return tvShow;
           }
           i++;
@@ -83,13 +84,13 @@ public class TelevisionShowCollectionImpl implements TelevisionShowCollection {
     @Override
     public boolean hasPrevious() {
       // TODO
-      return currentIndex - 1 >= 0;
+      return position - 1 >= 0;
     }
 
     @Override
     public TelevisionShow previous() {
       // TODO
-      return list.get(--currentIndex);
+      return list.get(--position);
     }
   }
 }

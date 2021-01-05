@@ -1,5 +1,7 @@
 package languagebasic;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -9,8 +11,8 @@ import static org.junit.Assert.*;
 public class ArrayPreviousLessTest {
     //TODO: Write tests for your code
 
-    @BeforeMethod
-    static void runBeforeTest(){
+    @Before
+    public void runBeforeTest(){
         System.out.println("Start testing the ArrayPreviousLess.");
     }
 
@@ -20,8 +22,8 @@ public class ArrayPreviousLessTest {
         assertArrayEquals(new int[] {-1, 10, -1, 6, 6},ArrayPreviousLess.arrayPreviousLess(new int[] {10, 53, 6, 56, 8}) );
     }
 
-    @AfterMethod
-    static void runAfterTest(){
+    @After
+    public void runAfterTest(){
         System.out.println("Finish testing the ArrayPreviousLess.");
     }
 }

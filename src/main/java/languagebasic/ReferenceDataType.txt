@@ -1,10 +1,10 @@
 1. How many String Objects are created?
 
-answer: 4
+answer: 5
 
 public static void main(String args[]) {
-    String s1 = "Hello ";
-    s1 += "World! ";
+    String s1 = "Hello ";   // Hello
+    s1 += "World! ";  // hello world, World
     String s2 = "From KMS!";
     System.out.println(s1);
     System.out.println(s1 + s2);
@@ -54,7 +54,7 @@ public static void main(String[] args) {
 2
 1
 **********
-10 40
+20 40
 }
 
 public static void main(String args[]) {

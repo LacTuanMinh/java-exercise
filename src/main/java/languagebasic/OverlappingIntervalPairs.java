@@ -18,8 +18,9 @@ public class OverlappingIntervalPairs {
     List<int[]> intervals = new ArrayList<>();
     intervals.add(new int[]{1, 5});
     intervals.add(new int[]{6, 8});
-    intervals.add(new int[]{5, 12});
-    intervals.add(new int[]{2, 6});
+//    intervals.add(new int[]{5, 12});
+//    intervals.add(new int[]{2, 6});
+    intervals.add((new int[] {1,5}));
 
     //============
 

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="languagebasic.ArrayPreviousLessTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-12-30T07:58:42" hostname="14KJLH2" time="0.013">
+  <properties/>
+  <testcase name="arrayPreviousLessTest" classname="languagebasic.ArrayPreviousLessTest" time="0.013"/>
+  <system-out><![CDATA[Start testing the ArrayPreviousLess.
+Finish testing the ArrayPreviousLess.
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -15,18 +15,20 @@ package languagebasic;
  * An array [24, 85, 0] looks like [00011000, 01010101, 00000000] in binary.
  * After packing these into one number we get 00000000 01010101 00011000 (spaces are placed for convenience), which equals to 21784
  */
+// sd dịch bit
 public class ArrayPacking {
-
   public static void main(String[] args) {
-    // TODO: for input [254, 255, 255, 255] don't let an exception occur
-    // The result could be negative
-    int[] data = new int[]{254, 255, 255, 255};// new int[]{24, 85, 0};
+
+    int[] data = new int[]{254, 255, 255, 255};// {24, 85, 0};
+    int result = 0;
 
     try {
-      arrayPacking(data);
+      result = arrayPacking(data);
     } catch (CustomException e) {
       e.printStackTrace();
     }
+
+    System.out.println(result);
   }
 
   /**
@@ -44,48 +46,12 @@ public class ArrayPacking {
       throw new CustomException("Array's length out of range 1 - 4");
     }
 
-    StringBuilder dataInBinary = new StringBuilder("");
-
-    for (int i = arrayLength - 1; i >= 0; i--) {
-      if (array[i] < 0 || array[i] >= 256) {
-        throw new CustomException("Item's value out of range");
-      }
-
-      dataInBinary.append(decimalToBinaryString(array[i]));
-
-      if (i > 0) {
-        dataInBinary.append(" ");
-      }
-    }
-
-    System.out.println(dataInBinary.toString());
-    System.out.println(binaryStringToDecimal(dataInBinary.toString()));
-    return 0;
-  }
-
-  public static String decimalToBinaryString(int number) {
-    StringBuilder result = new StringBuilder(Integer.toBinaryString(number));
-    StringBuilder missingDigits = new StringBuilder("");
-    int length = result.length();
-
-    while (length < 8) {
-      missingDigits.append("0");
-      length++;
-    }
-    return missingDigits.append(result).toString();
-  }
-
-  public static int binaryStringToDecimal(String binaryString) {
-    String binaryStringCopy = binaryString.replaceAll(" ", "");
-    final int length = binaryStringCopy.length();
     int sum = 0;
-    char bit;
 
-    for (int i = 0; i < length; i++) {
-      bit = binaryStringCopy.charAt(i);
-      if (bit == '1') {
-        sum += Math.pow(2, length - i - 1);
-      }
+    for (int i = 0; i < arrayLength; i++) {
+      int index = arrayLength - i - 1;
+      int value = array[index];
+      sum += (value << (index * 8));
     }
 
     return sum;

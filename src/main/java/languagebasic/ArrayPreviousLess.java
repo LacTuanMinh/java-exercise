@@ -27,11 +27,11 @@ public class ArrayPreviousLess {
 
     // TODO: use a consistent spacing (2 or 4 choose one)
     for (int i = 0; i < length; i++) {
-      if (items[i] < 0 || items[i]> 200) {
+      if (items[i] < 0 || items[i] > 200) {
         throw new CustomException("Item's value out of range");
       }
 
-      int indexOf  = -1;
+      int indexOf = -1;
 
       for (int j = 0; j < i; j++) {
         if ((items[j] < items[i])) {
@@ -39,9 +39,9 @@ public class ArrayPreviousLess {
         }
       }
 
-      if(indexOf != -1){
+      if (indexOf != -1) {
         itemsCopy[i] = items[indexOf];
-      }else {
+      } else {
         itemsCopy[i] = -1;
       }
     }
@@ -50,14 +50,13 @@ public class ArrayPreviousLess {
 
   public static void main(String[] args) throws CustomException {
 
-    // TODO: write tests in a separated file
-    int[] a = new int[] {10,53,6,56,8};//new int[]{3, 5, 2, 4, 5};
+    int[] a = new int[]{3, 5, 2, 4, 5}; // new int[] {10,53,6,56,8};//
     int[] b = arrayPreviousLess(a);
 
     for (int i = 0; i < b.length; i++) {
       System.out.print(b[i]);
 
-      if(i != b.length-1){
+      if (i != b.length - 1) {
         System.out.print(", ");
       }
     }

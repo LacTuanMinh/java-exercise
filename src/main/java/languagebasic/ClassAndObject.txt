@@ -60,7 +60,7 @@ answer: private modifier can not be applied to top level class,
         at least one public class
 
 ==> fix:
-public class A {
+ class A {
     private class B {
         private class C {}
     }
@@ -75,7 +75,7 @@ private class A {
 
 4. Find errors and fix if any
 public class A {
-    private class B {}
+    public/default/protected class B {}
 }
 
 public class MainClass extends A {

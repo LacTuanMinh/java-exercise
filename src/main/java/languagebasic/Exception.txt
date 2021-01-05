@@ -23,6 +23,7 @@ public static void main(String args[]) {
         FileReader fr = new FileReader(file);
     } catch (FileNotFoundException e) {
        System.out.println("File does not exist");
+       throw new Exception(e);
     }
 }
 
