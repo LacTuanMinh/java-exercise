@@ -18,7 +18,7 @@ public class LinkedListExercise {
         list.remove(2);
         printList(list);
         TelevisionShow show = new TelevisionShow(100.0, Channel.HTV1, "testInsert");
-        list.add(1, show);
+        list.add(2, show);
         printList(list);
         LOGGER.info("Test insert show - contains:{} index:{}", list.contains(show), list.indexOf(show));
         list.remove(show);
@@ -29,6 +29,7 @@ public class LinkedListExercise {
     public static void printList(TelevisionShowLinkedList list) {
         LOGGER.info("**************************************************");
         for (int i = 0; i < list.size(); i++) {
+            TelevisionShow show = list.get(i);
             LOGGER.info("Index{}: {}", i, list.get(i).getName());
         }
     }

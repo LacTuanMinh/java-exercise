@@ -1,12 +1,15 @@
 package coaching.csv;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.util.Scanner;
 
 /**
  * TODO Implement CSV parsing logic here
  */
 public class DefaultCsvParser implements CsvParser {
+
+    Scanner sc = null;
+    CsvFileConfig fileConfig = null;
 
     /**
      * Initialize parser
@@ -14,8 +17,13 @@ public class DefaultCsvParser implements CsvParser {
      * @param file         CSV file
      * @param parserConfig Configuration
      */
-    public DefaultCsvParser(File file, CsvFileConfig parserConfig) {
-        throw new UnsupportedOperationException("This method is not implemented yet");
+    public DefaultCsvParser(File file, CsvFileConfig parserConfig)  {
+        try {
+            this.sc = new Scanner(new FileReader(file));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        this.fileConfig = parserConfig;
     }
 
     /**
@@ -24,8 +32,8 @@ public class DefaultCsvParser implements CsvParser {
      * @throws IOException
      */
     @Override
-    public void close() {
-        throw new UnsupportedOperationException("This method is not implemented yet");
+    public void close() throws IOException {
+        sc.close();
     }
 
     /**
@@ -35,7 +43,7 @@ public class DefaultCsvParser implements CsvParser {
      */
     @Override
     public boolean hasNext() {
-        throw new UnsupportedOperationException("This method is not implemented yet");
+        return sc.hasNext();
     }
 
     /**
@@ -45,6 +53,9 @@ public class DefaultCsvParser implements CsvParser {
      */
     @Override
     public CsvLine next() {
-        throw new UnsupportedOperationException("This method is not implemented yet");
+
+        CsvLine csvLine = new CsvLine();
+
+
     }
 }
