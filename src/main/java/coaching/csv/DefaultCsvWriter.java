@@ -1,13 +1,19 @@
 package coaching.csv;
 
-import java.io.File;
-import java.io.IOException;
+import org.apache.commons.lang3.StringUtils;
+
+import java.io.*;
+import java.lang.reflect.Field;
 import java.util.Collection;
+import java.util.Scanner;
 
 /**
  * TODO Implement CSV writing logic here
  */
 public class DefaultCsvWriter implements CsvWriter {
+
+    FileWriter writer = null;
+    CsvFileConfig fileConfig = null;
 
     /**
      * Initialize writer
@@ -16,7 +22,13 @@ public class DefaultCsvWriter implements CsvWriter {
      * @param file   File to be written
      */
     public DefaultCsvWriter(CsvFileConfig config, File file) {
-        throw new UnsupportedOperationException("This method is not implemented yet");
+
+        try {
+            this.writer = new FileWriter(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        this.fileConfig = config;
     }
 
     /**
@@ -26,7 +38,20 @@ public class DefaultCsvWriter implements CsvWriter {
      */
     @Override
     public void write(CsvLine line) {
-        throw new UnsupportedOperationException("This method is not implemented yet");
+
+        String[] data = line.getSegments().values().toArray(new String[0]);
+        String formattedLine;
+        if (fileConfig.quoted) {
+            formattedLine = "\"" + StringUtils.join(data, "\"" + fileConfig.delimiter + "\"") + "\"";
+        } else {
+            formattedLine = StringUtils.join(data, fileConfig.delimiter);
+        }
+
+        try {
+            writer.write(formattedLine + "\r\n");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     /**
@@ -36,7 +61,19 @@ public class DefaultCsvWriter implements CsvWriter {
      */
     @Override
     public void write(Collection<CsvLine> lines) {
-        throw new UnsupportedOperationException("This method is not implemented yet");
+
+        for(CsvLine line : lines) {
+            write(line);
+        }
+
+//        CsvLine[] array = (CsvLine[]) lines.toArray();
+//        int len = array.length
+//        for (int i = 0; i < len; i++) {
+//            write(array[i]);
+//
+//            if(i < len)
+//                write(array[i]+"\r\n");
+//        }
     }
 
     /**
@@ -46,6 +83,11 @@ public class DefaultCsvWriter implements CsvWriter {
      */
     @Override
     public void close() {
-        throw new UnsupportedOperationException("This method is not implemented yet");
+        try {
+            writer.close();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
     }
+
 }

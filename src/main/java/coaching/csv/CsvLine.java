@@ -33,4 +33,8 @@ public class CsvLine {
 
         this.segments.put(position,data);
     }
+
+    public Map<Integer, String> getSegments() {
+        return segments;
+    }
 }
