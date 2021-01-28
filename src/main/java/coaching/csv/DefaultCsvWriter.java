@@ -4,8 +4,11 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
 import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * TODO Implement CSV writing logic here
@@ -42,9 +45,10 @@ public class DefaultCsvWriter implements CsvWriter {
         String[] data = line.getSegments().values().toArray(new String[0]);
         String formattedLine;
         if (fileConfig.quoted) {
-            formattedLine = "\"" + StringUtils.join(data, "\"" + fileConfig.delimiter + "\"") + "\"";
+//            formattedLine = "\"" + StringUtils.join(data, "\"" + fileConfig.delimiter + "\"") + "\"";
+            formattedLine = Arrays.stream(data).collect(Collectors.joining("\"" + fileConfig.delimiter + "\"", "\"", "\""));
         } else {
-            formattedLine = StringUtils.join(data, fileConfig.delimiter);
+            formattedLine = Arrays.stream(data).collect(Collectors.joining(fileConfig.delimiter));
         }
 
         try {
@@ -62,7 +66,7 @@ public class DefaultCsvWriter implements CsvWriter {
     @Override
     public void write(Collection<CsvLine> lines) {
 
-        for(CsvLine line : lines) {
+        for (CsvLine line : lines) {
             write(line);
         }
 

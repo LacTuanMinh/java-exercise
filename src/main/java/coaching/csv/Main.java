@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-        File file = new File(classLoader.getResource("abnormal.csv").getFile());
+        File file = new File(classLoader.getResource("unquoted.csv").getFile());
         CsvFileConfig configuration = new CsvFileConfig();
         configuration.setDelimiter("|");
         configuration.setQuoteMode(false);

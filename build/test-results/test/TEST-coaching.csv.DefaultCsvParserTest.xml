@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="coaching.csv.DefaultCsvParserTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-01-27T07:13:55" hostname="14KJLH2" time="0.022">
-  <properties/>
-  <testcase name="whenParse_QuotedCsv_ThenCorrectlyParse" classname="coaching.csv.DefaultCsvParserTest" time="0.022"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

@@ -8,7 +8,7 @@ public class Employee {
     private final String firstName;
     private final String surname;
     private final LocalDate dateOfBirth;
-    private final Company company;
+    private final Company company; // actually a string
     private final BigDecimal salary;
     private final Address homeAddress;
 
@@ -43,5 +43,10 @@ public class Employee {
 
     public Address getHomeAddress() {
         return homeAddress;
+    }
+
+    @Override
+    public String toString() {
+        return firstName + " " + surname + " " + dateOfBirth.toString() + "  " + company.getName() + " " + salary + " " + homeAddress.toString();
     }
 }

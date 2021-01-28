@@ -34,4 +34,15 @@ public class Address {
     public String getPostCode() {
         return postCode;
     }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+//                "flatNumber=" + flatNumber +
+//                ", streetNumber=" + streetNumber +
+//                ", buildingName='" + buildingName + '\'' +
+//                ", streetName='" + streetName + '\'' +
+                ", postCode='" + postCode + '\'' +
+                '}';
+    }
 }
