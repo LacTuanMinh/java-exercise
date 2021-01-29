@@ -63,13 +63,13 @@ public class DefaultCsvParserTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void whenInit_NullConfigParam_ThenReject() throws URISyntaxException {
+    public void whenInit_NullConfigParam_ThenReject() throws URISyntaxException, IOException {
         final File file = Paths.get(DefaultCsvParserTest.class.getResource("/comma.csv").toURI()).toFile();
         new DefaultCsvParser(file, null);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void whenInit_NullFileParam_ThenReject() {
+    public void whenInit_NullFileParam_ThenReject() throws IOException {
         new DefaultCsvParser(null, createCsvFileConfig());
     }
 

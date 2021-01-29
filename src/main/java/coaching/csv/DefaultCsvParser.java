@@ -18,13 +18,13 @@ public class DefaultCsvParser implements CsvParser {
      * @param file         CSV file
      * @param parserConfig Configuration
      */
-    public DefaultCsvParser(File file, CsvFileConfig parserConfig) {
+    public DefaultCsvParser(File file, CsvFileConfig parserConfig) throws IOException {
 
-        try {
-            this.scanner = new Scanner(new FileReader(file));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        if(file == null || parserConfig == null)
+        {
+            throw new IllegalArgumentException("Arguments can not be null");
         }
+        this.scanner = new Scanner(new FileReader(file));
         this.fileConfig = parserConfig;
     }
 
@@ -42,7 +42,6 @@ public class DefaultCsvParser implements CsvParser {
      *
      * @return
      */
-    @Override
     public boolean hasNext() {
         return scanner.hasNext();
     }
@@ -52,7 +51,6 @@ public class DefaultCsvParser implements CsvParser {
      *
      * @return
      */
-    @Override
     public CsvLine next() {
 
         CsvLine csvLine = new CsvLine();

@@ -11,10 +11,10 @@ public class SizeFunction extends Function {
         int max = (int) attributes.get("max");
 
         if (value != null) {
-            if (value instanceof Integer) {
-                return min <= (int) value && (int) value <= max;
-            } else if (value instanceof String) {
-                return min <= Integer.parseInt((String) value) && Integer.parseInt((String) value) <= max;
+            if (value instanceof String) {
+                return min <=  ((String) value).length() && ((String) value).length() <= max;
+            } else {
+                return false;
             }
         }
         return true;

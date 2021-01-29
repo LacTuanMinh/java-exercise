@@ -30,9 +30,7 @@ public class DefaultValidatorTest {
     public void whenValidate_NullValidatedObject_ThenReject(){
         try {
             new DefaultValidator().validate(null);
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
+        } catch (InvocationTargetException | IllegalAccessException e) {
             e.printStackTrace();
         }
     }

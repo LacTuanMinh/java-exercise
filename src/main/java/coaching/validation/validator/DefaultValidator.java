@@ -27,7 +27,7 @@ public class DefaultValidator implements Validator {
 
 
         if (Objects.isNull(data)) {
-            return violationList;
+            throw new IllegalArgumentException("Nothing to validate");
         }
 
         Class<?> classOfData = data.getClass();
