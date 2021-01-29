@@ -59,10 +59,14 @@ public class StreamAPIExerciseComplex {
         // TODO: find how much in total each company pays to their employees, order result by amount
         // Barclays plc - £12,184,531.00
         Map<String, List<Employee>> groups = EMPLOYEES.stream().collect(Collectors.groupingBy(employee -> employee.getCompany().getName()));
-        Map<String, String> sumSalaryForCompany = groups.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, group -> group.getValue().stream().map(Employee::getSalary).reduce(BigDecimal.valueOf(0), BigDecimal::add) + ""));
+        Map<String, BigDecimal> sumSalaryForCompany = groups.entrySet().stream()
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey, // key
+                        group -> group.getValue().stream().map(Employee::getSalary).reduce(BigDecimal.valueOf(0), BigDecimal::add))); // value
+
         Stream<String> result = sumSalaryForCompany.entrySet().stream()
-                .sorted((e1,e2) -> (int) (Double.parseDouble(e1.getValue()) - Double.parseDouble(e2.getValue())))
-                .map(entry -> entry.getKey() + " - " + decimalFormat.format(Double.parseDouble(entry.getValue())));
+                .sorted((e1,e2) -> (e2.getValue().subtract(e1.getValue()).intValue()))
+                .map(entry -> entry.getKey() + " - " + decimalFormat.format(entry.getValue()));
         return result.collect(Collectors.toList());
     }
 }

@@ -1,13 +1,14 @@
 package coaching.validator;
 
-import coaching.validation.DefaultValidator;
-import coaching.validation.NotNull;
-import coaching.validation.Regex;
-import coaching.validation.Size;
-import coaching.validation.Validator;
+import coaching.validation.validator.DefaultValidator;
+import coaching.validation.annotation.NotNull;
+import coaching.validation.annotation.Regex;
+import coaching.validation.annotation.Size;
+import coaching.validation.validator.Validator;
 import coaching.validation.Violation;
 import org.junit.Test;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
 
 /**
@@ -26,8 +27,14 @@ import java.util.Iterator;
 public class DefaultValidatorTest {
 
     @Test(expected = IllegalArgumentException.class)
-    public void whenValidate_NullValidatedObject_ThenReject() {
-        new DefaultValidator().validate(null);
+    public void whenValidate_NullValidatedObject_ThenReject(){
+        try {
+            new DefaultValidator().validate(null);
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 
     /*
@@ -37,7 +44,7 @@ public class DefaultValidatorTest {
      */
 
     @Test
-    public void whenValidate_FieldHavingSingleRule_ThenReturnViolation() {
+    public void whenValidate_FieldHavingSingleRule_ThenReturnViolation() throws InvocationTargetException, IllegalAccessException {
         final Validator validator = new DefaultValidator();
         final SingleRuleClient client = new SingleRuleClient();
         client.setFirstName(null);
@@ -101,7 +108,7 @@ public class DefaultValidatorTest {
      */
 
     @Test
-    public void whenValidate_FieldHavingMultipleRules_ThenReturnViolation() {
+    public void whenValidate_FieldHavingMultipleRules_ThenReturnViolation() throws InvocationTargetException, IllegalAccessException {
         final Validator validator = new DefaultValidator();
         final MultipleRuleClient client = new MultipleRuleClient();
         client.setFirstName("random123456");

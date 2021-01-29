@@ -1,4 +1,4 @@
-package coaching.validation;
+package coaching.validation.annotation;
 
 /**
  * Check null rule

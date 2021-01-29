@@ -1,5 +1,6 @@
 package coaching.validation;
 
+import java.lang.reflect.Field;
 import java.util.Collection;
 
 /**
@@ -7,13 +8,28 @@ import java.util.Collection;
  */
 public class Violation {
 
+    Object data;
+    Field field;
+    Collection<String> messages = null;
+
+    public Violation(Object data, Field field, Collection<String> messages) {
+        this.data = data;
+        this.field = field;
+        this.messages = messages;
+    }
+
     /**
      * Invalid value of field violating the rules
      *
      * @return Invalid value
      */
     public Object getInvalidValue() {
-        throw new UnsupportedOperationException("This method is not implemented yet");
+        try {
+            return field.get(data);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
@@ -23,7 +39,7 @@ public class Violation {
      * @return Violation message declared in rule annotation
      */
     public Collection<String> getMessages() {
-        throw new UnsupportedOperationException("This method is not implemented yet");
+        return messages;
     }
 
     /**
@@ -32,7 +48,7 @@ public class Violation {
      * @return Field name
      */
     public String getFieldName() {
-        throw new UnsupportedOperationException("This method is not implemented yet");
+        return field.getName();
     }
 
     @Override
