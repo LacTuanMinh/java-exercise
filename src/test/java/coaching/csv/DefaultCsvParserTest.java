@@ -57,8 +57,8 @@ public class DefaultCsvParserTest {
     @Test(expected = IOException.class)
     public void whenParse_CorruptedFile_ThenReject() throws URISyntaxException, IOException {
         final CsvFileConfig parserConfig = new CsvFileConfig();
-        parserConfig.setDelimiter(",");
-        parserConfig.setQuoteMode(true);
+        parserConfig.setDelimiter("|");
+        parserConfig.setQuoteMode(false);
         execute(parserConfig, "/abnormal.csv");
     }
 

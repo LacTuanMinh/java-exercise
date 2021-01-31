@@ -1,6 +1,7 @@
 package coaching.csv;
 
 import java.io.Closeable;
+import java.io.IOException;
 import java.util.Iterator;
 
 /**
@@ -13,5 +14,5 @@ import java.util.Iterator;
 public interface CsvParser extends Closeable {
 
     boolean hasNext();
-    CsvLine next();
+    CsvLine next() throws IOException;
 }

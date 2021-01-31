@@ -9,67 +9,83 @@ import java.util.regex.Pattern;
  */
 public class DefaultCsvParser implements CsvParser {
 
-    Scanner scanner = null;
-    CsvFileConfig fileConfig = null;
+	Scanner scanner = null;
+	CsvFileConfig fileConfig = null;
+	int nSegment = 0;
 
-    /**
-     * Initialize parser
-     *
-     * @param file         CSV file
-     * @param parserConfig Configuration
-     */
-    public DefaultCsvParser(File file, CsvFileConfig parserConfig) throws IOException {
+	/**
+	 * Initialize parser
+	 *
+	 * @param file         CSV file
+	 * @param parserConfig Configuration
+	 */
+	public DefaultCsvParser(File file, CsvFileConfig parserConfig) throws IOException {
 
-        if(file == null || parserConfig == null)
-        {
-            throw new IllegalArgumentException("Arguments can not be null");
-        }
-        this.scanner = new Scanner(new FileReader(file));
-        this.fileConfig = parserConfig;
-    }
+		if (file == null || parserConfig == null) {
+			throw new IllegalArgumentException("Arguments can not be null");
+		}
 
-    /**
-     * {@inheritDoc}
-     *
-     */
-    @Override
-    public void close() {
-        scanner.close();
-    }
+		this.fileConfig = parserConfig;
 
-    /**
-     * {@inheritDoc}
-     *
-     * @return
-     */
-    public boolean hasNext() {
-        return scanner.hasNext();
-    }
+		Scanner tempScanner = new Scanner(new FileReader(file));
 
-    /**
-     * {@inheritDoc}
-     *
-     * @return
-     */
-    public CsvLine next() {
+		if (tempScanner.hasNext()) { // read first line and close it
+			String line = tempScanner.next();
+			this.nSegment = line.split(Pattern.quote(parserConfig.delimiter)).length;
+		}
 
-        CsvLine csvLine = new CsvLine();
+		tempScanner.close();
 
-        if (scanner.hasNext()) {
-            String line = scanner.next();
-            String[] segments;
+		this.scanner = new Scanner(new FileReader(file));
+	}
 
-            if (fileConfig.quoted) {
-                line = line.replaceAll("\"", "");
-            }
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void close() {
+		scanner.close();
+	}
 
-            segments = line.split(Pattern.quote(fileConfig.delimiter),0);
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @return
+	 */
+	public boolean hasNext() {
+		return scanner.hasNext();
+	}
 
-            for (int i = 0; i < segments.length; i++) {
-                csvLine.set(i, segments[i].trim());
-            }
-        }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @return
+	 */
+	public CsvLine next() throws IOException {
 
-        return csvLine;
-    }
+		CsvLine csvLine = new CsvLine();
+
+		if (scanner.hasNext()) {
+			String line = scanner.next();
+			String[] segments;
+
+			if (fileConfig.quoted) {
+				line = line.replaceAll("\"", "");
+			}
+
+			segments = line.split(Pattern.quote(fileConfig.delimiter), 0);
+
+			if(segments.length != nSegment)
+			{
+				this.close();
+				throw new IOException("Incompatible of data column.");
+			}
+
+			for (int i = 0; i < segments.length; i++) {
+				csvLine.set(i, segments[i].trim());
+			}
+		}
+
+		return csvLine;
+	}
 }
