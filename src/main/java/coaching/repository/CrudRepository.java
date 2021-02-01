@@ -1,5 +1,6 @@
 package coaching.repository;
 
+import java.sql.SQLException;
 import java.util.Collection;
 
 /**
@@ -12,7 +13,7 @@ public interface CrudRepository<T> {
      *
      * @param data Data
      */
-    void save(Collection<T> data);
+    void save(Collection<T> data) throws SQLException;
 
     /**
      * Get all data existing in storage
@@ -20,4 +21,6 @@ public interface CrudRepository<T> {
      * @return Data
      */
     Collection<T> findAll();
+
+    void get() throws SQLException;
 }

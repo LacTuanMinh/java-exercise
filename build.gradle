@@ -1,6 +1,8 @@
 plugins {
     id 'java'
     id 'application'
+    id 'org.springframework.boot' version '2.4.2'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 }
 
 repositories {
@@ -11,6 +13,9 @@ dependencies {
     implementation 'ch.qos.logback:logback-classic:1.2.3'
     implementation 'com.zaxxer:HikariCP:3.4.5'
     implementation 'org.apache.commons:commons-lang3:3.0'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.springframework.data:spring-data-jdbc'
+    implementation 'com.h2database:h2:1.4.200'
 
     testImplementation 'junit:junit:4.13'
     testImplementation 'org.testng:testng:6.10'

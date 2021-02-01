@@ -1,8 +1,11 @@
 package coaching.model;
 
 import java.time.LocalDateTime;
+import org.springframework.data.annotation.Id;
 
 public class Staff {
+
+    @Id
     private Integer id;
     private String firstName;
     private String middleName;
