@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="coaching.csv.DefaultCsvWriterTest" tests="10" skipped="2" failures="0" errors="0" timestamp="2021-02-02T07:47:45" hostname="14KJLH2" time="0.439">
+  <properties/>
+  <testcase name="whenWriteMultiple_NonExistingFile_ThenReject" classname="coaching.csv.DefaultCsvWriterTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="whenWriteSingle_NonExistingFile_ThenReject" classname="coaching.csv.DefaultCsvWriterTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="whenWriteMultiple_PipelineDelimiter_ThenWrite" classname="coaching.csv.DefaultCsvWriterTest" time="0.372"/>
+  <testcase name="whenWriteMultiple_QuoteModeOn_ThenWrite" classname="coaching.csv.DefaultCsvWriterTest" time="0.012"/>
+  <testcase name="whenWriteSingle_QuoteModeOff_ThenWrite" classname="coaching.csv.DefaultCsvWriterTest" time="0.011"/>
+  <testcase name="whenWriteSingle_PipeLineDelimiter_ThenWrite" classname="coaching.csv.DefaultCsvWriterTest" time="0.011"/>
+  <testcase name="whenInit_NullConfigParam_ThenReject" classname="coaching.csv.DefaultCsvWriterTest" time="0.007"/>
+  <testcase name="whenInit_NullFileParam_ThenReject" classname="coaching.csv.DefaultCsvWriterTest" time="0.0"/>
+  <testcase name="whenWriteMultiple_QuoteModeOff_ThenWrite" classname="coaching.csv.DefaultCsvWriterTest" time="0.012"/>
+  <testcase name="whenWriteSingle_QuoteModeOn_ThenWrite" classname="coaching.csv.DefaultCsvWriterTest" time="0.012"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

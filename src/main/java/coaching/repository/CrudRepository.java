@@ -20,7 +20,5 @@ public interface CrudRepository<T> {
      *
      * @return Data
      */
-    Collection<T> findAll();
-
-    void get() throws SQLException;
+    Collection<T> findAll() throws SQLException;
 }

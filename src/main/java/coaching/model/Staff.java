@@ -13,6 +13,7 @@ public class Staff {
     private LocalDateTime dob;
     private String phone;
     private String address;
+    private boolean gender;
 
     public Integer getId() {
         return id;
@@ -68,6 +69,14 @@ public class Staff {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public boolean getGender() {
+        return gender;
+    }
+
+    public void setGender(boolean gender) {
+        this.gender = gender;
     }
 
     @Override

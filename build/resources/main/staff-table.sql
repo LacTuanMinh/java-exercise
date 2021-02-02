@@ -1,5 +1,5 @@
 create table staff (
-    id          int not null primary key,
+    id          int auto_increment not null primary key,
     firstName   varchar(50),
     middleName  varchar(50),
     lastName    varchar(50),

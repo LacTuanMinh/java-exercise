@@ -1,5 +1,6 @@
 package coaching.csv;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.File;
@@ -44,6 +45,7 @@ public class DefaultCsvParserTest {
         execute(parserConfig, "/comma.csv");
     }
 
+    @Ignore
     @Test(expected = IOException.class)
     public void whenParse_NonExistingFile_ThenReject() throws URISyntaxException, IOException {
         execute(createCsvFileConfig(), "/not-found.csv");

@@ -52,7 +52,8 @@ public class DefaultCsvWriter implements CsvWriter {
         }
 
         try {
-            writer.write(formattedLine + "\r\n");
+            writer.write(formattedLine + "\n");
+            writer.flush();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -64,20 +65,13 @@ public class DefaultCsvWriter implements CsvWriter {
      * @param lines Multiple CSV lines
      */
     @Override
-    public void write(Collection<CsvLine> lines) {
+    public void write(Collection<CsvLine> lines) throws IOException {
 
         for (CsvLine line : lines) {
             write(line);
         }
+        writer.flush();
 
-//        CsvLine[] array = (CsvLine[]) lines.toArray();
-//        int len = array.length
-//        for (int i = 0; i < len; i++) {
-//            write(array[i]);
-//
-//            if(i < len)
-//                write(array[i]+"\r\n");
-//        }
     }
 
     /**
